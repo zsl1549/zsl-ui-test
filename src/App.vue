@@ -12,6 +12,23 @@
   </p>
 </template>
 
+<!-- <script>
+import { ref, defineComponent } from "vue";
+import ZSLButton from "./package/zsl-button/index.vue";
+import publicjs from "./package/public-js/index.js";
+
+export default defineComponent({
+  components: {
+    ZSLButton,
+  },
+  setup() {
+    const msg = ref("setup script");
+    const nums = ref(17.6);
+    const { handleFirstUpperCase, handleRoundOff } = publicjs;
+    return { msg, nums, handleFirstUpperCase, handleRoundOff };
+  },
+});
+</script> -->
 <script>
 import { getCurrentInstance, ref, defineComponent } from "vue";
 export default defineComponent({
@@ -19,13 +36,12 @@ export default defineComponent({
     const { proxy } = getCurrentInstance();
     const msg = ref("setup script");
     const nums = ref(17.6);
-    const handleFirstUpperCase = proxy.public.handleFirstUpperCase;
-    const handleRoundOff = proxy.public.handleRoundOff;
+    const { handleFirstUpperCase, handleRoundOff } =
+      proxy.public.handleFirstUpperCase;
     return { msg, nums, handleFirstUpperCase, handleRoundOff };
   },
 });
 </script>
-
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
